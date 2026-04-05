@@ -45,8 +45,8 @@ public class BaseMethods {
 		driver.get(ConfigFileReader.getValue("baseURL"));
 	}
 	
-//	@AfterMethod
-//	public void teardown() {
-//		driver.quit();
-//	}
+	@AfterMethod
+	public void teardown() {
+		driver.quit();
+	}
 }

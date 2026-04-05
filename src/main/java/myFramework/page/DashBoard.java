@@ -29,6 +29,7 @@ public class DashBoard {
 	private static By searchBox = By.cssSelector("#search-field");
 	private static By searchClick = By.cssSelector("#search-submit");
 	
+	
 	//  Constructor
 
 	public DashBoard(WebDriverWait wait) {

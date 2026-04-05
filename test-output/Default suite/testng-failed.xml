@@ -7,7 +7,7 @@
         <methods>
           <include name="teardown"/>
           <include name="setUpTheBrowser"/>
-          <include name="gettingTheElementsPresentInTheSidebar"/>
+          <include name="signUpFunctionality"/>
         </methods>
       </class> <!-- sanityPack.SanityBasicFlow -->
     </classes>

@@ -11,6 +11,9 @@ import org.testng.annotations.Test;
 
 import myFramework.BaSE.BaseMethods;
 import myFramework.page.DashBoard;
+import myFramework.page.HomePageArticles;
+import myFramework.page.PaymentFLow;
+import myFramework.page.SignUpandLoginDetails;
 
 public class SanityBasicFlow extends BaseMethods{
 
@@ -61,5 +64,53 @@ public class SanityBasicFlow extends BaseMethods{
 	public void enteringInTheSearchField() {
 		DashBoard d = new DashBoard(wait);
 		d.searchfield("T-shirts");
+	}
+	
+	@Test
+	public void gettingDisplayedItems() {
+		HomePageArticles ar = new HomePageArticles(driver, wait);
+		List<WebElement> article  = ar.multiple_Articles();
+		for(WebElement air: article) {
+			System.out.println(air.getText());
+		}
+	}
+	
+	@Test (groups= "Regression")
+	public void gettingGreyJacketWindow() {
+		HomePageArticles a = new HomePageArticles(driver, wait);
+		int value = a.clickingOnTheAddToCartButton();
+		Assert.assertEquals(value, 1);
+	}
+	
+	@Test (groups= "Regression")
+	public void gettingMyCartBtn() {
+		HomePageArticles a = new HomePageArticles(driver,wait);
+		double price_value = a.clickingOnTheCartWindow();
+		Assert.assertEquals(price_value, 55.0);
+	}
+	
+	@Test (groups = "Regression")
+	public void clickingOnCheckOutBtn() {
+		HomePageArticles a = new HomePageArticles(driver,wait);
+		a.clickingOnTheCartWindow();
+		PaymentFLow p = new PaymentFLow(driver,wait);
+		String title = p.checkOutBtnClicked();
+		Assert.assertEquals("Your Shopping Cart – Sauce Demo", title);
+	}
+	
+	@Test
+	public void clickingOnTheCheckoutBtnAtCheckoutPage() {
+		HomePageArticles a = new HomePageArticles(driver,wait);
+		a.clickingOnTheCartWindow();
+		PaymentFLow p = new PaymentFLow(driver,wait);
+		String title = p.checkOutBtnClickedOnTheCheckOutPage();
+		Assert.assertEquals(title, "Checkout - Sauce Demo");
+//		Checkout - Sauce Demo
+	}
+	
+	@Test
+	public void signUpFunctionality() {
+		SignUpandLoginDetails signUp = new SignUpandLoginDetails(driver,wait);
+		signUp.clickOntheSignUpPageAndCreateAnAccount();
 	}
 }
